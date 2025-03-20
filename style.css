@@ -13,8 +13,8 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 70%;
-  max-width: 1200px;
+  width: 90%;
+  max-width: 800px;
   position: relative;
   overflow: hidden;
   box-shadow: 5px 5px 10px black;
