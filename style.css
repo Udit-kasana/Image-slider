@@ -1,0 +1,154 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.slider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 90%;
+  max-width: 1200px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 5px 5px 10px black;
+  border-radius: 5px;
+  border: 1px solid hsla(243, 100%, 50%, 0.6);
+  box-shadow: 5px 5px 20px hsla(243, 100%, 50%, 0.8);
+}
+
+.slider-container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.img-container {
+  width: 100%;
+  aspect-ratio: 16/9;
+  position: relative;
+}
+
+.slide-image {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease-in;
+}
+
+/* Move both images simultaneously */
+@keyframes slideLeft {
+  from {
+    transform: translateX(0%);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+@keyframes slideRight {
+  from {
+    transform: translateX(0%);
+  }
+  to {
+    transform: translateX(100%);
+  }
+}
+@keyframes slideLeftNew {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+@keyframes slideRightNew {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+/* Apply animations */
+
+.slide-left {
+  animation: slideLeft 0.5s linear;
+}
+.slide-left-new {
+  animation: slideLeftNew 0.5s linear;
+}
+.slide-right {
+  animation: slideRight 0.5s linear;
+}
+.slide-right-new {
+  animation: slideRightNew 0.5s linear;
+}
+
+/* Navigation Buttons */
+button {
+  height: 75px;
+  width: 75px;
+  color: white;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.5);
+  border: none;
+  color: white;
+  font-size: 24px;
+  padding: 5px 10px;
+  cursor: pointer;
+  border-radius: 5px;
+  z-index: 1;
+}
+
+button.left {
+  left: 5px;
+}
+button.right {
+  right: 5px;
+}
+
+button:hover {
+  background: rgba(0, 0, 0, 0.8);
+}
+
+#indicator {
+  height: 10%;
+  width: 80%;
+  position: absolute;
+  bottom: 5px;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+
+.dot {
+  height: 25%;
+  width: 30px;
+  background-color: hsl(0, 0%, 77%);
+  border-radius: 5px;
+  cursor: pointer;
+  transition: border 0.3s ease-in, box-shadow 0.3s ease-in,
+    background-color 0.3s ease-in;
+}
+
+.dot:hover {
+  background-color: hsla(218, 100%, 50%, 0.9);
+}
+
+.active {
+  border: 3px solid hsla(243, 100%, 50%, 0.6);
+  box-shadow: 2px 2px 7px hsla(243, 100%, 50%, 0.8);
+  background-color: #fff;
+}
