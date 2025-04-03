@@ -15,8 +15,8 @@
 - **│──** **📁 images** (Folder for images) 
 - **│──** 📄 index.html (Main HTML file )
 - **│──** 📄 style.css (Styling file )
-- **│──** 📄 script.js (JavaScript for slider) functionality 
-- **│──** 📄 README.md # Project documentation (this file)
+- **│──** 📄 script.js (JavaScript for slider functionality )
+- **│──** 📄 README.md (Project documentation)
 
 ## [Live Demo](https://udit-kasana.github.io/Image-slider/)
 
