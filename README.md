@@ -19,5 +19,5 @@
 - **│──** 📄 script.js (JavaScript for slider) functionality 
 - **│──** 📄 README.md # Project documentation (this file)
 
-## Live demo
+## [Live Demo](https://udit-kasana.github.io/Image-slider/)
 
