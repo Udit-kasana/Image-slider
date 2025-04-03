@@ -1,5 +1,5 @@
-const leftbtn = document.querySelector(".left");
-const rightbtn = document.querySelector(".right");
+const leftBtn = document.querySelector(".left");
+const rightBtn = document.querySelector(".right");
 const slider = document.querySelector(".img-container");
 const indicator = document.querySelector("#indicator");
 let indicatorDots;
@@ -19,21 +19,18 @@ function createIndicator() {
     indicator.appendChild(div);
   }
 
-  //selecting indicator dots
+  //selecting indicator dots after creating them
   indicatorDots = document.querySelectorAll("#indicator div");
   indicatorDots[currentIndex].classList.add("active");
 
-  //hiding first and last dot
+  //hiding first and last dot that are for cloned images
   indicatorDots[0].style.display = "none";
   indicatorDots[totalSlides - 1].style.display = "none";
 
   //adding event listener to each dot
   indicatorDots.forEach((_, index) => {
     indicatorDots[index].addEventListener("click", () => {
-      userInteracted();
-      indicatorDots[currentIndex].classList.remove("active");
-      currentIndex = index;
-      updateSlider();
+      updateSlider(index);
     });
   });
 }
@@ -42,9 +39,18 @@ function createIndicator() {
 createIndicator();
 
 //function to create slide animation
-function updateSlider() {
+function updateSlider(index, direction = "") {
+  if (isSliding) return;
+
   userInteracted();
 
+  isSliding = true;
+  indicatorDots[currentIndex].classList.remove("active");
+
+  if (direction === "prev") index--;
+  else if (direction === "next") index++;
+
+  currentIndex = index;
   //applying transition and transform next image
   slider.style.transition = "transform 0.5s ease-in-out";
   slider.style.transform = `translateX(${currentIndex * -val}%)`;
@@ -63,25 +69,8 @@ function updateSlider() {
     }
 
     indicatorDots[currentIndex].classList.add("active");
+    isSliding = false;
   }, 500);
-}
-
-function nextSlide() {
-  if (isSliding) return;
-  isSliding = true;
-  indicatorDots[currentIndex].classList.remove("active");
-  currentIndex++;
-  updateSlider();
-  setTimeout(() => (isSliding = false), 700);
-}
-
-function prevSlide() {
-  if (isSliding) return;
-  isSliding = true;
-  indicatorDots[currentIndex].classList.remove("active");
-  currentIndex--;
-  updateSlider();
-  setTimeout(() => (isSliding = false), 700);
 }
 
 // Clears the auto slider interval when user interacts
@@ -92,15 +81,17 @@ function userInteracted() {
 
 //auto slider function
 function startAutoSlide() {
-  id = setInterval(nextSlide, 3000);
+  id = setInterval(() => {
+    updateSlider(currentIndex, "next");
+  }, 3000);
 }
 
 // Button controls
-rightbtn.addEventListener("click", () => {
-  nextSlide();
+rightBtn.addEventListener("click", () => {
+  updateSlider(currentIndex, "next");
 });
-leftbtn.addEventListener("click", () => {
-  prevSlide();
+leftBtn.addEventListener("click", () => {
+  updateSlider(currentIndex, "prev");
 });
 
 // Auto-slide every 3 seconds
