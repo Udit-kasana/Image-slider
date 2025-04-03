@@ -6,7 +6,6 @@
 - **Interactive Slide Indicators**: Clickable dots to navigate.
 - **Left & Right Navigation Buttons**: Manually slide images.
 - **Auto-Sliding Feature**: Automatically transitions images every 3 seconds.
-- **Dynamic Image Loading**: Uses an array of images.
 
 ---
 
